@@ -1,61 +1,43 @@
 #include <stdio.h>
-//definisco la funzione di calcolo
-int moltiplicazione(int num1, int num2){
-    int moltiplicazione = 0;
 
-    moltiplicazione = num1 * num2;
-    return moltiplicazione;
-    }
-
-//Chiedo all'utente di inserire i due valori per effettuare il calcolo della moltiplicazione
-void calcolo_moltiplicazione(){
-    int num1 ,num2;
-
-    printf("Inserisci primo numero\n");
-    scanf("%d", &num1);
-
-    printf("Inserisci secondo numero\n");
-    scanf("%d", &num2);
-    
-    printf("\n%d * %d = %d\n", num1,num2, moltiplicazione(num1,num2));
-}
-
-//definisco la funzione di calcolo
-float mediaAritmetica(int num1, int num2){
-    float media;
-
-    media = (num1 + num2) / 2.0;
-    return media;
-    }
-
-//Chiedo all'utente di inserire i due valori interi per effettuare il calcolo per la media aritmetica
-void calcolo_media(){
-    int num1, num2;
-
+// Funzione per l'inserimento dei valori manualmente
+void inserisci_numeri(int *num1, int *num2) {
     printf("Inserisci il primo numero intero: ");
-    scanf("%d", &num1);
+    scanf("%d", num1);
 
     printf("Inserisci il secondo numero intero: ");
-    scanf("%d", &num2);
-    
-    printf("La media aritmetica è: %.2f\n", mediaAritmetica(num1,num2));
+    scanf("%d", num2);
 }
 
-//Utilizzo di uno switch per la scelta dell'operazione
-int main(){
-    int scelta;
-    printf("\nScegli \n1 Moltiplicazione \n2 Media Aritmetica\n");
+// Funzione di moltiplicazione
+int moltiplicazione(int num1, int num2) {
+    return num1 * num2;
+}
+
+// Funzione per calcolare la media aritmetica
+float mediaAritmetica(int num1, int num2) {
+    return (num1 + num2) / 2.0;
+}
+
+// Funzione principale per eseguire il calcolo di moltiplicazione o media
+int main() {
+    int scelta, num1, num2;
+
+    printf("\nScegli:\n1. Moltiplicazione\n2. Media Aritmetica\n");
     scanf("%d", &scelta);
-    switch(scelta){
+
+    inserisci_numeri(&num1, &num2);
+
+    switch(scelta) {
         case 1:
-            calcolo_moltiplicazione();
+            printf("\n%d * %d = %d\n", num1, num2, moltiplicazione(num1, num2));
             break;
         case 2:
-            calcolo_media();
+            printf("La media aritmetica è: %.2f\n", mediaAritmetica(num1, num2));
             break;
         default:
-            printf("Non previsto");        
+            printf("Opzione non prevista\n");
     }
-    
+
     return 0;
 }
